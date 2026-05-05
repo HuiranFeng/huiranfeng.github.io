@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冯惠然 Huiran Feng</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        body { margin: 0; background-color: #f8f9fa; display: flex; justify-content: center; font-family: sans-serif; }
+        .page-container { position: relative; width: 100%; max-width: 1000px; line-height: 0; }
+        .bg-img { width: 100%; height: auto; display: block; }
+        .interactive-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .hit-box { position: absolute; cursor: pointer; background: rgba(255, 255, 255, 0); transition: all 0.3s ease; border-radius: 8px; text-decoration: none; }
+        .hit-box:hover { background: rgba(138, 145, 255, 0.1); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        /* 响应式定位 */
+        .btn-about { top: 68%; left: 7%; width: 15%; height: 20%; }
+        .btn-video { top: 68%; left: 24%; width: 15%; height: 20%; }
+        .btn-walk  { top: 68%; left: 41%; width: 15%; height: 20%; }
+        .btn-comic { top: 68%; left: 58%; width: 15%; height: 20%; }
+        .btn-mail  { top: 68%; left: 74%; width: 19%; height: 20%; }
+        /* 视频弹窗样式 */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
+        .overlay-content { position: relative; width: 90%; max-width: 800px; }
+        .close-btn { position: absolute; top: -40px; right: 0; color: white; font-size: 30px; cursor: pointer; border: none; background: none; }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <img src="main_v2.jpg" class="bg-img">
+    <div class="interactive-layer">
+        <a href="about.html" class="hit-box btn-about"></a>
+        <div class="hit-box btn-video" onclick="showVideo('BV1xxxxxxx')"></div> <!-- 请在此处填入你的B站BV号 -->
+        <a href="citywalk.html" class="hit-box btn-walk"></a>
+        <a href="https://mp.weixin.qq.com/s/xxxx" target="_blank" class="hit-box btn-comic"></a> <!-- 填入公众号链接 -->
+        <a href="mailto:Huiran.Feng24@student.xjtlu.edu.cn" class="hit-box btn-mail"></a>
+    </div>
+</div>
+<div id="overlay" class="overlay">
+    <div class="overlay-content">
+        <button class="close-btn" onclick="closeVideo()">✕</button>
+        <div id="video-player"></div>
+    </div>
+</div>
+<script>
+    function showVideo(bv) {
+        document.getElementById('video-player').innerHTML = `<iframe src="//player.bilibili.com/player.html?bvid=${bv}&page=1&high_quality=1&danmaku=0" allowfullscreen="true" width="100%" height="500" frameborder="0"></iframe>`;
+        document.getElementById('overlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    function closeVideo() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('video-player').innerHTML = '';
+        document.body.style.overflow = 'auto';
+    }
+</script>
+</body>
+</html>
